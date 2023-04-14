@@ -5,7 +5,7 @@ import AboutPg from './components/AboutPg';
 import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   Link
 } from "react-router-dom";
@@ -26,11 +26,15 @@ function App() {
 
   return (
   <>
+  <Router>
     <Navbar title="Edloops" mode={mode} toggleMode={toggleMode}/>
     <div className="container">
-      <TextForm heading="Enter a text to analyze below" mode={mode}/>
-      <AboutPg/>
+      <Routes>
+          <Route exact path="/about" element={<AboutPg/>} />
+          <Route exact path="/" element={<TextForm heading="Enter a text to analyze below" mode={mode}/>}/>
+      </Routes>
     </div>
+  </Router>
   </>
   );
 }
